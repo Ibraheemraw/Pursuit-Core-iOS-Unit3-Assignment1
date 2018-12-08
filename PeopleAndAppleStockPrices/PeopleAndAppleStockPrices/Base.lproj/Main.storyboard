@@ -12,7 +12,7 @@
         <!--People 🧔🏾👱🏾‍♀️-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PeopleViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="UserViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,15 +68,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="People 🧔🏾👱🏾‍♀️" id="vBh-3r-gm4"/>
+                    <connections>
+                        <outlet property="myUsersTableView" destination="sJP-rd-2if" id="gNL-2c-8bV"/>
+                        <outlet property="searchBar" destination="kvQ-ha-qHx" id="zMk-3d-5Hr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1364" y="-307"/>
         </scene>
-        <!--People Detail View Controller-->
+        <!--User Detail View Controller-->
         <scene sceneID="4Mc-Ex-xyn">
             <objects>
-                <viewController id="FG2-1v-LGR" customClass="PeopleDetailViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FG2-1v-LGR" customClass="UserDetailViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xBI-1g-uwg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
