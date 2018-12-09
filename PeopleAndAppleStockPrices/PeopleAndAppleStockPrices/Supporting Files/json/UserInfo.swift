@@ -26,9 +26,9 @@ struct UserInfo: Codable {
     let location: Location
     let email: String
     struct Picture: Codable {
-        let large: String
-        let medium: String
-        let thumbnail: String
+        let large: URL
+        let medium: URL
+        let thumbnail: URL
     }
     let picture: Picture
 }

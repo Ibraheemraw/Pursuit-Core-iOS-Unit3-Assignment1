@@ -38,6 +38,13 @@ class UserViewController: UIViewController {
         }
     }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? UserDetailViewController, let indexPath = myUsersTableView.indexPathForSelectedRow else {
+            fatalError("Error in the Segue")
+        }
+        destination.usersIExpect = users[indexPath.row]
+    }
 
 }
 

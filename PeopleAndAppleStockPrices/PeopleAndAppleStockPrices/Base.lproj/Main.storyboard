@@ -129,6 +129,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ky0-Nl-dsJ"/>
                     </view>
+                    <connections>
+                        <outlet property="userEmail" destination="5up-1v-svU" id="z2k-0y-AZI"/>
+                        <outlet property="userImg" destination="Acp-wc-au9" id="Lmb-gQ-uEy"/>
+                        <outlet property="userLocation" destination="V9l-xm-GrC" id="YZj-Rv-dnd"/>
+                        <outlet property="userName" destination="f7v-Zh-rMM" id="SOr-sh-FgK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGe-N1-5Uy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
