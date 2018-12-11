@@ -10,9 +10,13 @@ import UIKit
 
 class UserViewController: UIViewController {
     //my varibles
-    private var users = [UserInfo]()
-    var filtered:[UserInfo] = []
-    var searchActive: Bool = false
+     var users = [UserInfo](){
+        didSet {
+            myUsersTableView.reloadData()
+        }
+    }
+    
+    
     //Outlets
     @IBOutlet weak var myUsersTableView: UITableView!
     
@@ -20,23 +24,27 @@ class UserViewController: UIViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "People 👨🏾"
+    users = loadPeopleData()
     myUsersTableView.dataSource = self
     searchBar.delegate = self
-    loadPeopleData()
+    
   }
-   func loadPeopleData(){
+   func loadPeopleData() -> [UserInfo]{
+    var results = [UserInfo]()
     if let path = Bundle.main.path(forResource: "userinfo", ofType: "json"){
         let myUrl = URL(fileURLWithPath: path)
         if let data = try? Data.init(contentsOf: myUrl){
             do {
                 let thesePeople = try JSONDecoder().decode(UserInfo.SearchPeopleData.self, from: data)
-               users = thesePeople.results
+               results = thesePeople.results
                 print("there are \(users.count) people")
             } catch {
                 print(error)
             }
         }
     }
+    return results
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,20 +58,14 @@ class UserViewController: UIViewController {
 
 extension UserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filtered.count
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = myUsersTableView.dequeueReusableCell(withIdentifier: "pplCell", for: indexPath)
         let usersToSet = users[indexPath.row]
-        let filterToUserSet = filtered[indexPath.row]
-        if(searchActive){
-            cell.textLabel?.text = "\(filterToUserSet.name.first) \(filterToUserSet.name.last)"
-            cell.detailTextLabel?.text = filterToUserSet.location.state
-        } else {
-            cell.textLabel?.text = "\(usersToSet.name.first) \(usersToSet.name.last) "
-            cell.detailTextLabel?.text = usersToSet.location.state
-        }
+        cell.textLabel?.text = "\(usersToSet.name.first) \(usersToSet.name.last)"
+        cell.detailTextLabel?.text = usersToSet.location.city
         return cell
     }
     
@@ -71,34 +73,31 @@ extension UserViewController: UITableViewDataSource {
 }
 
 extension UserViewController: UISearchBarDelegate{
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
-    }
-    //searchBarTextDidEndEditing - Tells the delegate that the user finished editing the search text. Typically, you implement this method to perform the text-based search
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
-        
-    }
-    //searchBarCancelButtonClicked - Tells the delegate that the cancel button was tapped. Typically, you implement this method to dismiss the search bar.
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
-    //searchBarSearchButtonClicked - Tells the delegate that the search button was tapped. You should implement this method to begin the search. Use the text property of the search bar to get the text. You can also send becomeFirstResponder() to the search bar to begin editing programmatically.
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
-    }
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        searchActive = true
+//    }
+//    //searchBarTextDidEndEditing - Tells the delegate that the user finished editing the search text. Typically, you implement this method to perform the text-based search
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        searchActive = false
+//
+//    }
+//    //searchBarCancelButtonClicked - Tells the delegate that the cancel button was tapped. Typically, you implement this method to dismiss the search bar.
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        searchActive = false
+//    }
+//    //searchBarSearchButtonClicked - Tells the delegate that the search button was tapped. You should implement this method to begin the search. Use the text property of the search bar to get the text. You can also send becomeFirstResponder() to the search bar to begin editing programmatically.
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchActive = false
+//    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filtered = users.filter{$0.name.first.contains(searchText)}
-        if(filtered.count == 0){
-            searchActive = false;
+        users = loadPeopleData()
+        if searchText == "" {
+            return
         } else {
-            searchActive = true;
+            users = loadPeopleData().filter{$0.name.first.lowercased().contains(searchText.lowercased())}
+
         }
-        self.myUsersTableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+   
 }

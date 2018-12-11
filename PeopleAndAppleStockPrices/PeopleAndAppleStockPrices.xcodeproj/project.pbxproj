@@ -66,9 +66,9 @@
 		577E5BEA21BA8BA10083EB97 /* PeopleAndAppleStockPrices */ = {
 			isa = PBXGroup;
 			children = (
-				577E5BED21BA8BA10083EB97 /* UserViewController.swift */,
 				577E5BEF21BA8BA10083EB97 /* Main.storyboard */,
 				48CF2AA621BB26B500ABB604 /* UserDetailViewController.swift */,
+				577E5BED21BA8BA10083EB97 /* UserViewController.swift */,
 				48CF2AA421BB21CB00ABB604 /* StockViewController.swift */,
 				577E5BFD21BA8BE20083EB97 /* Supporting Files */,
 				577E5BF721BA8BA20083EB97 /* Info.plist */,
