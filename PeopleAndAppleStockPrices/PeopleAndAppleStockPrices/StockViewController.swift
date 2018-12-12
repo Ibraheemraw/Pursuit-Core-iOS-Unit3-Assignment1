@@ -13,8 +13,8 @@ class StockViewController: UIViewController {
     var stocks = [Stocks]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Stocks📉"
         stockTableView.dataSource = self
-        dump(stocks)
         loadStockData()
         
     }
@@ -32,6 +32,10 @@ class StockViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let desitination = segue.destination as? StockDetailViewController, let indexPath = stockTableView.indexPathForSelectedRow else {fatalError("Error with the perapre for segue function")}
+        desitination.stockElementsIExpect = stocks[indexPath.row]
+    }
     
 
 }
