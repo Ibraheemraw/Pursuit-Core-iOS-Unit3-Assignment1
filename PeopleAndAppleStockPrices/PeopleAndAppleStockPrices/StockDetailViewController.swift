@@ -13,7 +13,7 @@ class StockDetailViewController: UIViewController {
     @IBOutlet weak var stockDate: UILabel!
     @IBOutlet weak var stockOpeningPrice: UILabel!
     @IBOutlet weak var stockClosingPrice: UILabel!
-    var stockElementsIExpect: Stocks!
+    var stockElementsIExpect: Stock!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,6 @@ class StockDetailViewController: UIViewController {
         stockDate.text = stockElementsIExpect.date
         stockOpeningPrice.text = "Opening: \(roundedStockValueForOpen)"
         stockClosingPrice.text = "Closing: \(roundedStockValueForClose)"
-        
        
     }
     func checkStockPriceflow(_ firstStock: Double, _ secondStock: Double ){

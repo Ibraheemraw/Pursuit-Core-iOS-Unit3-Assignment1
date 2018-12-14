@@ -73,22 +73,6 @@ extension UserViewController: UITableViewDataSource {
 }
 
 extension UserViewController: UISearchBarDelegate{
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        searchActive = true
-//    }
-//    //searchBarTextDidEndEditing - Tells the delegate that the user finished editing the search text. Typically, you implement this method to perform the text-based search
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        searchActive = false
-//
-//    }
-//    //searchBarCancelButtonClicked - Tells the delegate that the cancel button was tapped. Typically, you implement this method to dismiss the search bar.
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchActive = false
-//    }
-//    //searchBarSearchButtonClicked - Tells the delegate that the search button was tapped. You should implement this method to begin the search. Use the text property of the search bar to get the text. You can also send becomeFirstResponder() to the search bar to begin editing programmatically.
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchActive = false
-//    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         users = loadPeopleData()
         if searchText == "" {

@@ -1,5 +1,5 @@
 //
-//  Stocks.swift
+//  Stock.swift
 //  PeopleAndAppleStockPrices
 //
 //  Created by Ibraheem rawlinson on 12/7/18.
@@ -7,9 +7,9 @@
 //
 
 import Foundation
-struct Stocks: Codable {
+struct Stock: Codable {
     let date: String
     let open: Double
     let close: Double
-    
+
 }
